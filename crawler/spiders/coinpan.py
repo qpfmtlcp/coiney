@@ -10,13 +10,14 @@ class CoinpanSpider(CrawlSpider):
     start_urls = ['http://www.coinpan.com/index.php?mid=free&page=1']
     
     rules = (
-        Rule(LinkExtractor(allow=('index.php\?mid=free&page=\d+$',))),
-        Rule(LinkExtractor(allow=('document_srl=\d+$',)), callback='parse_item'),
+        Rule(LinkExtractor(allow=('/free$', 'index.php\?mid=free&page=\d+$'))),
+        Rule(LinkExtractor(allow=('/free/\d+$', 'document_srl=\d+$',)), callback='parse_item'),
     )
     
     def parse_item(self, response):
         data = CrawlerItem()
-        data['page_no'] = re.search('document_srl=(\d+)', response.url).group(1)
+        pattern = 'free/(\d+)' if response.url.count('/free/') else 'document_srl=(\d+)'
+        data['page_no'] = re.search(pattern, response.url).group(1)
         data['title'] = response.xpath("//div[@class='read_header']//a/text()").extract_first()
         data['content'] = response.xpath('//div[@class="read_body"]//div/text()').extract_first()
         
