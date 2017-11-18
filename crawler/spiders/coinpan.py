@@ -1,3 +1,4 @@
+import re
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from crawler.items import CrawlerItem
@@ -15,6 +16,7 @@ class CoinpanSpider(CrawlSpider):
     
     def parse_item(self, response):
         data = CrawlerItem()
+        data['page_no'] = re.search('document_srl=(\d+)', response.url).group(1)
         data['title'] = response.xpath("//div[@class='read_header']//a/text()").extract_first()
         data['content'] = response.xpath('//div[@class="read_body"]//div/text()').extract_first()
         
