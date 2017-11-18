@@ -6,10 +6,11 @@ from crawler.items import CrawlerItem
 class CoinpanSpider(CrawlSpider):
     name = 'coinpan'
     allowed_domains = ['coinpan.com']
-    start_urls = ('https://www.coinpan.com/index.php?mid=free&page=' + str(num) for num in range(1, 10000))
+    start_urls = ['http://www.coinpan.com/index.php?mid=free&page=1']
     
     rules = (
-        Rule(LinkExtractor(allow=('document_srl=\d+$',)), callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=('index.php\?mid=free&page=\d+$',))),
+        Rule(LinkExtractor(allow=('document_srl=\d+$',)), callback='parse_item'),
     )
     
     def parse_item(self, response):
