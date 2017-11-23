@@ -65,9 +65,6 @@ SPIDER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'crawler.pipelines.CrawlerPipeline': 300,
-# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -81,6 +78,10 @@ SPIDER_MIDDLEWARES = {
 # AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
 # AUTOTHROTTLE_DEBUG = False
+ITEM_PIPELINES = {
+    'crawler.pipelines.DuplicatesPipeline': 300,
+    'crawler.pipelines.ValidatesPipeline': 301,
+}
 
 # Enable and configure HTTP caching (disabled by default)
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
