@@ -1,9 +1,12 @@
-# -*- coding: utf-8 -*-
+from scrapy.exceptions import DropItem
 
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
+
+class ValidatesPipeline(object):
+    def process_item(self, item, spider):
+        if not item.get('title', None):
+            raise DropItem("Invalid item found: %s" % item['page_no'])
+        else:
+            return item
 
 
 class CrawlerPipeline(object):
