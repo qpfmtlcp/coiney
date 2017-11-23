@@ -9,6 +9,15 @@ class ValidatesPipeline(object):
             return item
 
 
-class CrawlerPipeline(object):
+class DuplicatesPipeline(object):
+    __slots__ = ['seen']
+    
+    def __init__(self):
+        self.seen = set()
+    
     def process_item(self, item, spider):
-        return item
+        if item['page_no'] in self.seen:
+            raise DropItem("Duplicate item found: %s" % item['page_no'])
+        else:
+            self.seen.add(item['page_no'])
+            return item
