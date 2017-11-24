@@ -26,6 +26,17 @@ CONCURRENT_REQUESTS = 24
 CONCURRENT_REQUESTS_PER_DOMAIN = 12
 CONCURRENT_REQUESTS_PER_IP = 12
 
+# Configure the AutoThrottle extension
+AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_DEBUG = True
+AUTOTHROTTLE_START_DELAY = 1
+AUTOTHROTTLE_MAX_DELAY = 60
+AUTOTHROTTLE_TARGET_CONCURRENCY = 3
+
+# Configure cookies (enabled by default)
+COOKIES_ENABLED = True
+COOKIES_DEBUG = True
+
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
 
@@ -55,19 +66,6 @@ SPIDER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-
-# Enable and configure the AutoThrottle extension (disabled by default)
-# See http://doc.scrapy.org/en/latest/topics/autothrottle.html
-# AUTOTHROTTLE_ENABLED = True
-# The initial download delay
-# AUTOTHROTTLE_START_DELAY = 5
-# The maximum download delay to be set in case of high latencies
-# AUTOTHROTTLE_MAX_DELAY = 60
-# The average number of requests Scrapy should be sending in parallel to
-# each remote server
-# AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
-# Enable showing throttling stats for every response received:
-# AUTOTHROTTLE_DEBUG = False
 ITEM_PIPELINES = {
     'crawler.pipelines.DuplicatesPipeline': 300,
     'crawler.pipelines.ValidatesPipeline': 301,
