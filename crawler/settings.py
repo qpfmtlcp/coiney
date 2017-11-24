@@ -20,21 +20,11 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefo
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-# Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 8
-
-# Configure a delay for requests for the same website (default: 0)
-# See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
-# See also autothrottle settings and docs
-
-# The download delay setting will honor only one of:
-DOWNLOAD_DELAY = 0.3
-
-# CONCURRENT_REQUESTS_PER_DOMAIN = 16
-# CONCURRENT_REQUESTS_PER_IP = 16
-
-# Disable cookies (enabled by default)
-# COOKIES_ENABLED = False
+# Configure concurrent requests performed by Scrapy
+DOWNLOAD_DELAY = 0.05
+CONCURRENT_REQUESTS = 24
+CONCURRENT_REQUESTS_PER_DOMAIN = 12
+CONCURRENT_REQUESTS_PER_IP = 12
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
