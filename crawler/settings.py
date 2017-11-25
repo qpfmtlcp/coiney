@@ -8,6 +8,7 @@ http://doc.scrapy.org/en/latest/topics/settings.html
 http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 """
+import datetime
 
 BOT_NAME = 'crawler'
 
@@ -78,3 +79,13 @@ ITEM_PIPELINES = {
 # HTTPCACHE_DIR = 'httpcache'
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# Configure log
+LOG_FORMATTER = 'crawler.middlewares.PoliteLogFormatter'
+LOG_LEVEL = 'INFO'
+LOG_FILE = 'crawler/logs/%s.log' % datetime.datetime.now().strftime('%Y-%m-%d')
+
+# Configure feed
+FEED_URI = 'crawler/feeds/%s.csv' % datetime.datetime.now().strftime('%Y-%m-%d')
+FEED_EXPORT_ENCODING = 'utf8'
+FEED_FORMAT = 'csv'
