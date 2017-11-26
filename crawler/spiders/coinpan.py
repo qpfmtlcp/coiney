@@ -25,6 +25,7 @@ class CoinpanSpider(CrawlSpider):
     
     def parse_item(self, response):
         l = CoinpanLoader(item=CrawlerItem(), response=response)
+        l.add_value('community', self.name)
         l.add_xpath('page_no', '//p[@class="perlink"]//@href', re='coinpan.com/(\d+)')
         l.add_xpath('title', '//div[@class="read_header"]//a/text()')
         l.add_xpath('content', '//div[@class="read_body"]//div[contains(@class, "xe_content")]')

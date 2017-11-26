@@ -11,3 +11,4 @@ class CrawlerItem(scrapy.Item):
     comment_count = scrapy.Field()
     good_count = scrapy.Field()
     bad_count = scrapy.Field()
+    community = scrapy.Field()
