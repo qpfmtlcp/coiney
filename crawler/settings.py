@@ -83,7 +83,7 @@ HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 # Configure log
 LOG_FORMATTER = 'crawler.middlewares.PoliteLogFormatter'
 LOG_LEVEL = 'INFO'
-LOG_FILE = 'crawler/logs/%s.log' % datetime.datetime.now().strftime('%Y-%m-%d')
+LOG_FILE = '.scrapy/logs/%s.log' % datetime.datetime.now().strftime('%Y-%m-%d')
 
 # Configure feed
 FEED_URI = 'crawler/feeds/%s.csv' % datetime.datetime.now().strftime('%Y-%m-%d')
