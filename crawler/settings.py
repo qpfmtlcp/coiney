@@ -34,7 +34,7 @@ AUTOTHROTTLE_START_DELAY = 1
 AUTOTHROTTLE_MAX_DELAY = 60
 AUTOTHROTTLE_TARGET_CONCURRENCY = 3
 
-# Configure cookies (enabled by default)
+# Configure cookies
 COOKIES_ENABLED = True
 COOKIES_DEBUG = True
 
@@ -47,8 +47,7 @@ COOKIES_DEBUG = True
 #   'Accept-Language': 'kr',
 # }
 
-# Enable or disable spider middlewares
-# See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
+# Configure spider middlewares
 SPIDER_MIDDLEWARES = {
     'crawler.middlewares.CrawlerSpiderMiddleware': 543,
 }
@@ -72,10 +71,10 @@ ITEM_PIPELINES = {
 }
 
 # Configure HTTP caching
-HTTPCACHE_ENABLED = False
+HTTPCACHE_ENABLED = True
 HTTPCACHE_GZIP = True
 HTTPCACHE_DIR = 'httpcache'
-HTTPCACHE_EXPIRATION_SECS = 0
+HTTPCACHE_EXPIRATION_SECS = 3600
 HTTPCACHE_IGNORE_HTTP_CODES = []
 HTTPCACHE_POLICY = 'scrapy.extensions.httpcache.DummyPolicy'
 HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
@@ -86,6 +85,11 @@ LOG_LEVEL = 'INFO'
 LOG_FILE = '.scrapy/logs/%s.log' % datetime.datetime.now().strftime('%Y-%m-%d')
 
 # Configure feed
-FEED_URI = 'crawler/feeds/%s.csv' % datetime.datetime.now().strftime('%Y-%m-%d')
-FEED_EXPORT_ENCODING = 'utf8'
+FEED_URI = 'storage/%s.csv' % datetime.datetime.now().strftime('%Y-%m-%d')
 FEED_FORMAT = 'csv'
+FEED_EXPORT_ENCODING = 'utf-8'
+FEED_EXPORT_FIELDS = [
+    'community', 'page_no', 'title', 'uploaded_at',
+    'view_count', 'comment_count', 'good_count', 'bad_count',
+    'content', 'comment'
+]
