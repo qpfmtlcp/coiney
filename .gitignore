@@ -104,5 +104,4 @@ ENV/
 .idea/
 
 # personal config
-config.py
 *.csv
