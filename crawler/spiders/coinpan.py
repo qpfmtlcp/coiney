@@ -3,7 +3,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.http import FormRequest
 from crawler.loaders import CoinpanLoader
 from crawler.items import CrawlerItem
-import config
+from config import COINPAN_ID, COINPAN_PASSWORD
 
 
 class CoinpanSpider(CrawlSpider):
@@ -19,7 +19,7 @@ class CoinpanSpider(CrawlSpider):
     def parse_start_url(self, response):
         return FormRequest.from_response(
             response,
-            formdata={'user_id': config.ID, 'password': config.PASSWORD},
+            formdata={'user_id': COINPAN_ID, 'password': COINPAN_PASSWORD},
             formxpath='//fieldset',
         )
     
