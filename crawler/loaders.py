@@ -17,3 +17,12 @@ class CoinpanLoader(ItemLoader):
     
     content_out = Identity()
     comment_out = Identity()
+
+
+class CoinGalleryLoader(ItemLoader):
+    default_output_processor = TakeFirst()
+    
+    content_in = MapCompose(remove_tags, replace_entities, replace_escape_chars, replace_useless_chars)
+    view_count_in = MapCompose(replace_escape_chars, str.strip)
+    
+    content_out = Identity()
