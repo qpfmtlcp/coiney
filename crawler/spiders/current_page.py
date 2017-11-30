@@ -20,6 +20,7 @@ class CurrentPageSpider(CrawlSpider):
     start_urls = community_pages()
     custom_settings = {
         'FEED_URI': 'storage/current_page.json',
+        'FEED_FORMAT': 'json',
         'FEED_EXPORT_ENCODING': 'utf-8',
         'FEED_EXPORT_FIELDS': [
             'community', 'page_no', 'title', 'uploaded_at',
@@ -55,7 +56,7 @@ class CurrentPageSpider(CrawlSpider):
         l.add_xpath('title', '//div[@class="read_header"]//a/text()')
         l.add_xpath('content', '//div[@class="read_body"]//div[contains(@class, "xe_content")]')
         l.add_value('created_at', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-
+        
         header = l.nested_xpath('//ul[@class="wt_box gray_color"]//li')
         header.add_xpath('uploaded_at', '//span', re='\d{4}\.\d{2}\.\d{2}\W+\d{2}:\d{2}')
         header.add_xpath('comment_count', 'a[@href="#comment"]//b/text()')
