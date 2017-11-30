@@ -12,3 +12,4 @@ class CrawlerItem(scrapy.Item):
     good_count = scrapy.Field()
     bad_count = scrapy.Field()
     community = scrapy.Field()
+    created_at = scrapy.Field()
